@@ -1,0 +1,37 @@
+import React, { useReducer } from 'react';
+
+const initialState = {
+  cartItems: [],
+};
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'addItem':
+      return { cartItems: [...state.cartItems, action.payload] };
+    default:
+      return state;
+  }
+}
+
+const ShoppingCart = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  const handleAddItem = () => {
+    const newItem = { id: 1, name: 'Product Name', price: 10 };
+    dispatch({ type: 'addItem', payload: newItem });
+  };
+
+  return (
+    <div>
+      <h2>Shopping Cart</h2>
+      <button onClick={handleAddItem}>Add Item</button>
+      <ul>
+        {state.cartItems.map(item => (
+          <li key={item.id}>{item.name} - ${item.price}</li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default ShoppingCart;

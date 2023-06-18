@@ -1,0 +1,63 @@
+import {useState,useEffect} form 'react'
+
+//uso del useState para el checkbox y agregar nuevas tareas
+const [newTaskItems,setNewTaskItems]=useState([])
+
+//uso del useState para capturar el valor
+const [task,setTask]=useState('')
+
+1.como capturar un evento?
+
+//con el form puedo dar click e ingresar el valor al newTaskItems
+
+const handleSubmit=(event)=>{
+	event.preventDefault()
+	createNewTask(task)
+	setTask('')
+}
+
+<form onSubmit={handleSubmit}>
+	<input type="text" placeHolder="type your task" value={task} 
+		onChane={(event)=>setTask(event.target.value)}/>
+	<button>Add new task</button>
+</form>
+
+2.como agregar una tarea?
+
+const createNewTask=(taskName)=>{
+	if(!newTaskItems.find(t=>t.name==taskName)){
+		setNewitemTask(...newTaskItems,{name:taskName,done:false})		
+	}	
+}
+
+3.como marcar una tarea>?
+
+const toggleTask=(task)=>{
+	setNewTaskItems(
+		newTaskItems.map(t=>t.name==task.name ?{...t,done}:!t.done:t)
+	)	
+}
+
+4. como utilizar el almacenamiento local con las tareas
+
+
+//uso estado de newTaskItems
+useEffect(()=>{
+	let data=localStorage.getItem('tareas')
+	if(data){
+		setNewTaskItems(JSON.parse(data))
+	}
+},[])
+
+useEffect(()=>{
+	localStorage.setItem('tareas',JSON.stringify(newTaskItems))
+},[newTaskItems])
+
+5.como cambiar el estilo de una tarea cuando se marque completada
+
+debo utilizar el task.done en el TaskCreator
+// creo un operador ternario usando style, el cual si task.done es true
+me aplique un line-troughh y es falso nada 
+<span style={task.done ?{textDecoration:"line-through"}:{textDecoration:"none"}}>{task.name}</span>
+
+6.como eliminar una tarea?
