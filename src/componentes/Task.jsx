@@ -1,6 +1,11 @@
 import { useState } from "react";
 
 export const Task = ({ task, toggleTask, deleteTask,editTask }) => {
+  const handleDelete=()=>{
+    if(window.confirm("Are you sure you want to delete")){
+      deleteTask(task)
+    }
+  }
   /* crep in estado para saber si el usuario estara en modo edicion o no de la tarea */
   const [editing, setEditing] = useState(false);
 
@@ -29,19 +34,20 @@ export const Task = ({ task, toggleTask, deleteTask,editTask }) => {
   return (
     <>
       <li className={`item-list ${task.done ? "checked" : ""}`}>
+        <div className="button-container" style={viewMode}>
         <input
           type="checkbox"
           checked={task.done}
           onChange={() => toggleTask(task)}
         />
         
-        <div className="button-container" style={viewMode}>
+        
         <span>{task.name}</span>
           <button onClick={()=>handleEditing()}>
             <i className="fa-sharp fa-solid fa-pen-to-square"></i>
           </button>
 
-          <button onClick={() => deleteTask(task)}>
+          <button onClick={() => handleDelete()}>
             <i className="fa-sharp fa-solid fa-trash"></i>
           </button>
         </div>

@@ -1,10 +1,13 @@
 import { TaskCreator } from "./TaskCreator";
 import { Task } from "./Task";
+import { VisibilityControl } from "./VisibilityControl";
 import { useState, useEffect } from "react";
 
 export const TaskList = () => {
   const [taskItems, setTaskItems] = useState([]);
-
+  const ClearAllTask=()=>{
+    setTaskItems([]);
+  }
   const deleteTask = (taskToDelete) => {
     setTaskItems(taskItems.filter((t) => t.name !== taskToDelete.name));
   };
@@ -22,12 +25,6 @@ export const TaskList = () => {
   const editTask = (editedTask, id) => {
     setTaskItems(
       taskItems.map((task) => (task.id === id ? { ...task, name: editedTask } : task))
-      /* taskItems.map((t) => {
-        if (t.id === id) {
-          t.name = editedTask;
-        }
-        return taskItems;
-      }) */
     );
   };
 
@@ -56,6 +53,7 @@ export const TaskList = () => {
           />
         ))}
       </ul>
+      <VisibilityControl ClearAllTask={ClearAllTask}/>
     </div>
   );
 };
