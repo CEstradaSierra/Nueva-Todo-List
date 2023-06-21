@@ -6,16 +6,36 @@
 }
 
 
-.list-item{
+.item-list {
   list-style: none;
-}
-.task-container{
-  background-color: lightblue;
   display:flex;
   align-items: center;
   padding: 10px;
   border-radius: 10px;
+  font-size: 15px;
 }
+
+.item-list.checked {
+  text-decoration: line-through;
+  list-style: none;
+  background-color: lightgray !important;
+  color: rgb(33, 57, 57) !important;
+}
+
+.edit-mode{
+  display:flex;
+  justify-content: space-around;
+  width:100%;
+  padding: 10px;
+  border: 1px solid #dfdfdf;
+  outline: none;
+  border-radius: 10px;
+
+
+}
+
+
+
 .button-container{
   margin-left: auto;
 }
