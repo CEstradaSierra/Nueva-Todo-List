@@ -1,43 +1,23 @@
 import { TaskCreator } from "./TaskCreator";
 import { Task } from "./Task";
 import { VisibilityControl } from "./VisibilityControl";
-import { useState, useEffect } from "react";
+import { useModifyTask } from "../hooks/useModifyTask";
 
 export const TaskList = () => {
-  const [taskItems, setTaskItems] = useState([]);
+  
+  const{taskItems,createNewTask,deleteTask,editTask,setTaskItems}=useModifyTask()
+
   const ClearAllTask=()=>{
     setTaskItems([]);
-  }
-  const deleteTask = (taskToDelete) => {
-    setTaskItems(taskItems.filter((t) => t.name !== taskToDelete.name));
-  };
-  let index = taskItems.length + 1;
-  function createNewTask(taskName) {
-    if (!taskItems.find((task) => task.name === taskName)) {
-      setTaskItems([...taskItems, { name: taskName, done: false, id: index }]);
-    }
   }
   const toggleTask = (task) => {
     setTaskItems(
       taskItems.map((t) => (t.name === task.name ? { ...t, done: !t.done } : t))
     );
   };
-  const editTask = (editedTask, id) => {
-    setTaskItems(
-      taskItems.map((task) => (task.id === id ? { ...task, name: editedTask } : task))
-    );
-  };
+  
 
-  useEffect(() => {
-    let data = localStorage.getItem("tasks");
-    if (data) {
-      setTaskItems(JSON.parse(data));
-    }
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(taskItems));
-  }, [taskItems]);
+  
 
   return (
     <div className="taskList">
