@@ -1,12 +1,14 @@
+import {v4 as uuidv4} from 'uuid'
 import { useState, useEffect } from "react";
 
 export const useModifyTask = () => {
   const [taskItems, setTaskItems] = useState([]);
+  
 
-  let index = taskItems.length + 1;
-  function createNewTask(taskName) {
+  let index = uuidv4();
+  function createNewTask(taskName,des) {
     if (!taskItems.find((task) => task.name === taskName)) {
-      setTaskItems([...taskItems, { name: taskName, done: false, id: index }]);
+      setTaskItems([...taskItems, { name: taskName, done: false, id: index,description:des}]);
     }
   }
 
@@ -21,6 +23,14 @@ export const useModifyTask = () => {
       )
     );
   };
+  const toggleTask = (task) => {
+    setTaskItems(
+      taskItems.map((t) => (t.name === task.name ? { ...t, done: !t.done } : t))
+    );
+  };
+  const ClearAllTask=()=>{
+    setTaskItems([]);
+  }
   useEffect(() => {
     let data = localStorage.getItem("tasks");
     if (data) {
@@ -37,6 +47,8 @@ export const useModifyTask = () => {
     createNewTask,
     deleteTask,
     editTask,
-    setTaskItems,
+    toggleTask,
+    ClearAllTask,
+    
   };
 };

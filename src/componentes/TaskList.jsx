@@ -3,25 +3,13 @@ import { Task } from "./Task";
 import { VisibilityControl } from "./VisibilityControl";
 import { useModifyTask } from "../hooks/useModifyTask";
 
+
 export const TaskList = () => {
   
-  const{taskItems,createNewTask,deleteTask,editTask,setTaskItems}=useModifyTask()
-
-  const ClearAllTask=()=>{
-    setTaskItems([]);
-  }
-  const toggleTask = (task) => {
-    setTaskItems(
-      taskItems.map((t) => (t.name === task.name ? { ...t, done: !t.done } : t))
-    );
-  };
-  
-
-  
-
+  const{taskItems,createNewTask,deleteTask,editTask,toggleTask,ClearAllTask,}=useModifyTask()
   return (
     <div className="taskList">
-      <TaskCreator createNewTask={createNewTask} />
+      <TaskCreator createNewTask={createNewTask}  />
       <ul className="list-main">
         {taskItems.map((task) => (
           <Task
@@ -33,7 +21,7 @@ export const TaskList = () => {
           />
         ))}
       </ul>
-      <VisibilityControl ClearAllTask={ClearAllTask}/>
+      <VisibilityControl tasks={taskItems} ClearAllTask={ClearAllTask}/>
     </div>
   );
 };
