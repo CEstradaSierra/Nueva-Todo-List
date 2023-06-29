@@ -2,8 +2,17 @@ import { useState } from 'react'
 import {useForm} from 'react-hook-form'
 export const TaskCreator=({createNewTask})=>{
     const[newTaskName,setNewTaskname]=useState('')
-    const{register,handleSubmit,reset}=useForm({mode:"onChange"})
+    const{register,handleSubmit,reset,formState:{errors}}=useForm({mode:"onChange"})
 
+    const registerOptions={
+        name:{
+            required:"Name is required",
+            minLength:{
+                value:3,
+                message:"Name must have At least 3 characters"
+            },
+        },
+    }
     const onFormSubmit=(data)=>{
         createNewTask(data.name,data.description);
         reset()
@@ -12,7 +21,10 @@ export const TaskCreator=({createNewTask})=>{
     return(
         <>
         <form onSubmit={handleSubmit(onFormSubmit)} className='formulario'>
-        <input type="text" placeholder='Enter new Task' {...register('name')}/>
+        <input type="text" placeholder='Enter new Task' {...register('name',registerOptions.name)}/>
+        <small>
+            {errors?.name && errors.name.message}
+        </small>
         <input type="text" placeholder="Enter Description" {...register('description')} />
         <button >Save Task</button>
         </form>
