@@ -9,7 +9,7 @@ export const TaskCreator=({createNewTask})=>{
             required:"Name is required",
             minLength:{
                 value:3,
-                message: "Password must hav at least 3 characters"
+                message: "Password must have at least 3 characters"
             }
         }
     }
