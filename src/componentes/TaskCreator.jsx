@@ -33,9 +33,11 @@ export const TaskCreator = ({ createNewTask }) => {
     <>
       <form onSubmit={handleSubmit(onFormSubmit)} className="formulario">
         <FormControl >
-          <Flex direction="column" >
-            <FormLabel>Task Title</FormLabel>
+          <Flex direction="column" mt={5} >
+            <FormLabel fontSize="2xl">Task Title</FormLabel>
             <Input
+            fontWeight="semibold"
+              fontSize="2xl"
               _hover={{
                 transform: "scale(1.4)",
                 transition: "transform 0.3s ease",
@@ -45,9 +47,10 @@ export const TaskCreator = ({ createNewTask }) => {
               {...register("name", registerOptions.name)}
               marginBottom={4} 
             />
-            <small>{errors?.name && errors.name.message}</small>
-            <FormLabel>Task Description</FormLabel>
+            <small style={{color:"red"}}>{errors?.name && errors.name.message}</small>
+            <FormLabel fontSize="2xl">Task Description</FormLabel>
             <Input
+              fontSize="2xl"
               type="text"
               placeholder="Enter Description"
               {...register("description")}
@@ -56,11 +59,11 @@ export const TaskCreator = ({ createNewTask }) => {
                 transition: "transform 0.3s ease",
               }}
             />
-            <Button type="submit" leftIcon={<FaPlus />}>
+          </Flex>
+            <Button mt={5} type="submit" leftIcon={<FaPlus />} colorScheme="messenger">
               {" "}
               Add Task
             </Button>
-          </Flex>
         </FormControl>
       </form>
     </>
