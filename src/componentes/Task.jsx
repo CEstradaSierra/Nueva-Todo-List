@@ -57,6 +57,7 @@ export const Task = ({ task, toggleTask, deleteTask, editTask }) => {
             className="edit-mode"
             style={editMode}
             onKeyDown={(e) => handleEditingDone(e)}
+            autoFocus={editing}
           />
         </form>
       </li>

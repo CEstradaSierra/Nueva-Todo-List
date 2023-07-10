@@ -1,6 +1,10 @@
+import { Text } from "@chakra-ui/react"
 export const Header=(props)=>{
     const{titleApp}=props
     return(
-        <h1 className="Header-App">{titleApp}</h1>
+        <Text fontFamily="sans-serif" fontWeight="bold" fontSize="4xl">
+
+            {titleApp}
+        </Text>
     )
 }

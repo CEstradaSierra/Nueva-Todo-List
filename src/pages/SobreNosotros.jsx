@@ -1,48 +1,139 @@
+import {
+  Box,
+  Icon,
+  Text,
+  Flex,
+  Stack,
+  useMediaQuery,
+  Grid,
+} from "@chakra-ui/react";
+import { useColorMode } from "@chakra-ui/color-mode";
+import { BiSolidUniversalAccess } from "react-icons/bi";
+import { FaMoon } from "react-icons/fa";
+import {BsListTask,BsFillLightningFill} from "react-icons/bs"
+import {GrStorage} from "react-icons/gr"
+import {AiFillEdit,AiFillDatabase} from "react-icons/ai"
+import { color } from "framer-motion";
 function SobreNosotros() {
+  const { colorMode } = useColorMode();
+  const isDark = colorMode === "dark";
+  const [isNotSmallerScreen] = useMediaQuery("(min-width:600px)");
   return (
-    <>
-      <h2>Description:</h2>
-
-      <p>
-        A to-do list is a list of things to do,ordered by priority, that
-        normally are written down on paper or in a notebook. But this App allows
-        you to organize your activities, both at work and private live, and to
-        have a clear picture of your day
-      </p>
-      <h2>Features:</h2>
-      <ol>
-        <li>
-          Create new task, in the App you be able to create task depending of
-          what you need
-        </li>
-        <li>
-          Add task with description, you can add task only by name but you can
-          also add a little description to strucuture your task{" "}
-        </li>
-        <li>
-          Toggle Task, you can toggle your task and mark if is done or undone
-        </li>
-        <li>
-          Edit your task, if you make a mistake or want to change the name or
-          description you can edit the task
-        </li>
-        <li>
-          Delete Task you can delete your task depending of your current state
-        </li>
-        <li>Pending task, you can see how many tasks are pending</li>
-        <li>clear all task, you can delete all the task</li>
-      </ol>
-      <h2>Technologies:</h2>
-      <ul>
-        <li>vite</li>
-        <li>React</li>
-        <li>useState,useEffect</li>
-        <li>react-router-dom</li>
-        <li>JavaScript</li>
-        <li>HTML</li>
-        <li>CSS</li>
-      </ul>
-    </>
+    <Stack>
+      <Flex
+        direction={isNotSmallerScreen ? "row" : "column"}
+        spacing="200px"
+        p={isNotSmallerScreen ? "32" : "0"}
+        alignSelf="flex-start"
+      >
+        <Box mt={isNotSmallerScreen ? "0" : 16} align="flex-start">
+          <Text fontSize="7xl" fontWeight="semibold">
+            An manage time tool you'd expect from a busy worker
+          </Text>
+          <Text fontSize="2xl" color={isDark ? "gray.200" : "gray.500"}>
+            Opinionated and designed for daily use
+          </Text>
+          <Box alignSelf="center">
+            <Grid
+              templateColumns={{ sm: "repeat(1, 1fr)", md: "repeat(3, 1fr)" }}
+       
+            >
+              <Flex
+                direction="column"
+                rounded="xl"
+                h="40vh"
+                w="40vh"
+                boxShadow="lg"
+                p={6}
+                _hover={{ bg: "cyan.400" }}
+              >
+                <Icon as={BiSolidUniversalAccess} boxSize={14} color="blue" />
+                <Text fontWeight="semibold" fontSize="2xl">Accessible</Text>
+                <Text color="gray.500" fontWeight="semibold" fontSize="2xl">
+                  The to-do list is understandable, usable and practicable by
+                  all people
+                </Text>
+              </Flex>
+              <Flex
+                direction="column"
+                rounded="xl"
+                h="40vh"
+                w="40vh"
+                boxShadow="lg"
+                p={6}
+                _hover={{ bg: "cyan.400" }}
+              >
+                <Icon as={BsListTask} boxSize={14} color="blue" />
+                <Text fontWeight="semibold" fontSize="2xl">Create taks</Text>
+                <Text color="gray.500" fontWeight="semibold" fontSize="2xl">
+                  Create your task depend on what you need and add description if you want
+                </Text>
+              </Flex>
+              <Flex
+                direction="column"
+                rounded="xl"
+                h="40vh"
+                w="40vh"
+                boxShadow="lg"
+                p={6}
+                _hover={{ bg: "cyan.400" }}
+              >
+                <Icon as={AiFillDatabase} boxSize={14} color="blue" />
+                <Text fontWeight="semibold" fontSize="2xl">local Storage</Text>
+                <Text color="gray.500" fontWeight="semibold" fontSize="2xl">
+                  if you get out the app don´t worry your task would be there
+                </Text>
+              </Flex>
+              <Flex
+                direction="column"
+                rounded="xl"
+                h="40vh"
+                w="40vh"
+                boxShadow="lg"
+                p={6}
+                _hover={{ bg: "cyan.400" }}
+              >
+                <Icon as={FaMoon} boxSize={12} color="blue" />
+                <Text fontWeight="semibold" fontSize="2xl">Light and Dark UI</Text>
+                <Text color="gray.500" fontWeight="semibold" fontSize="2xl">
+                  Optimized for multiple color modes. Use light or dark, your choice.
+                </Text>
+              </Flex>
+              <Flex
+                direction="column"
+                rounded="xl"
+                h="40vh"
+                w="40vh"
+                boxShadow="lg"
+                p={6}
+                _hover={{ bg: "cyan.400" }}
+              >
+                <Icon as={BsFillLightningFill} boxSize={14} color="blue" />
+                <Text fontWeight="semibold" fontSize="2xl">Developer productivity</Text>
+                <Text color="gray.500" fontWeight="semibold" fontSize="2xl">
+                Guaranteed to boost your productivity when building your app or website.
+                </Text>
+              </Flex>
+              <Flex
+                direction="column"
+                rounded="xl"
+                h="40vh"
+                w="40vh"
+                boxShadow="lg"
+                p={6}
+                _hover={{ bg: "cyan.400" }}
+              >
+                <Icon as={AiFillEdit} boxSize={14} color="blue" />
+                <Text fontWeight="semibold" fontSize="2xl">Edit tasks</Text>
+                <Text color="gray.500" fontWeight="semibold" fontSize="2xl">
+                  if you make a mistake typing your task, you can edit the content whatever yout want
+                </Text>
+              </Flex>
+            </Grid>
+          </Box>
+        </Box>
+      </Flex>
+    </Stack>
   );
 }
 
